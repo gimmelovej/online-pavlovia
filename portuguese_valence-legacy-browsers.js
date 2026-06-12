@@ -359,9 +359,7 @@ function questionnaireRoutineBegin(snapshot) {
     });
     window.questionnaireSurvey.setModel('demographic_survey.json');
     window.questionnaireSurvey.setAutoDraw(true);
-    questionnaireComponents.push(key_resp_questionnaire);
-    key_resp_questionnaire.status = PsychoJS.Status.FINISHED;
-    
+
     key_resp_questionnaire.keys = undefined;
     key_resp_questionnaire.rt = undefined;
     _key_resp_questionnaire_allKeys = [];
@@ -388,6 +386,7 @@ function questionnaireRoutineEachFrame() {
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
     // Run 'Each Frame' code from code_questionnaire
+    key_resp_questionnaire.status = PsychoJS.Status.FINISHED;
     if (!window.questionnaireSurvey.isCompleted) {
       return Scheduler.Event.FLIP_REPEAT;
     }
