@@ -1,0 +1,382 @@
+{
+  "title": "Questionário",
+  "showQuestionNumbers": "off",
+  "showProgressBar": "top",
+  "progressBarType": "pages",
+  "pageNextText": "Próxima",
+  "pagePrevText": "Anterior",
+  "completeText": "Concluir",
+  "requiredText": "*",
+  "completedHtmlOnCondition": [
+    {
+      "expression": "{consentimento} = 'Afirmo que li e não desejo participar do experimento.'",
+      "html": "<h3>Obrigado pelo seu tempo.</h3><p>Você optou por não participar do experimento. Nenhuma outra informação será coletada.</p>"
+    }
+  ],
+  "completedHtml": "<h3>Questionário concluído!</h3><p>Obrigado. Agora vamos começar o experimento.</p>",
+  "pages": [
+    {
+      "name": "page_consentimento",
+      "title": "Termo de Consentimento Livre e Esclarecido",
+      "elements": [
+        {
+          "type": "html",
+          "name": "tcle_html",
+          "html": "<div style=\"text-align:left; max-height:320px; overflow-y:auto; border:1px solid #ccc; padding:12px; font-size:14px;\"><p><strong>[PLACEHOLDER — substituir pelo texto completo do Termo de Consentimento Livre e Esclarecido (TCLE), conforme aprovado pelo comitê de ética da pesquisa.]</strong></p><p>Este espaço deve apresentar: objetivo da pesquisa, procedimentos, riscos e benefícios, garantia de sigilo e anonimato, caráter voluntário da participação, possibilidade de desistência a qualquer momento, e os contatos dos pesquisadores responsáveis e do comitê de ética.</p></div>"
+        },
+        {
+          "type": "radiogroup",
+          "name": "consentimento",
+          "title": "Tendo lido o termo acima, você concorda em participar deste estudo?",
+          "isRequired": true,
+          "choices": [
+            "Afirmo que li e aceito participar do experimento.",
+            "Afirmo que li e não desejo participar do experimento."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_sociodemografico",
+      "title": "Questões sociodemográficas",
+      "description": "Nessa seção, conjunto de perguntas destinadas a caracterizar o perfil dos participantes da pesquisa. Essas questões coletam informações como idade, gênero, escolaridade, ocupação. Os dados obtidos são utilizados exclusivamente para fins de análise científica, permitindo compreender melhor a composição da amostra e verificar possíveis relações entre essas características e os resultados da pesquisa.",
+      "visibleIf": "{consentimento} = 'Afirmo que li e aceito participar do experimento.'",
+      "elements": [
+        {
+          "type": "text",
+          "name": "idade",
+          "title": "Qual é a sua idade em anos? (só coloque números)",
+          "isRequired": true,
+          "inputType": "number",
+          "validators": [
+            {
+              "type": "numeric",
+              "minValue": 1,
+              "maxValue": 120,
+              "text": "Este campo só aceita números."
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "escolaridade",
+          "title": "Qual é o seu maior nível de escolaridade?",
+          "isRequired": true,
+          "choices": [
+            "Ensino Fundamental completo",
+            "Ensino Fundamental incompleto",
+            "Ensino Médio completo",
+            "Ensino Médio incompleto",
+            "Ensino superior completo",
+            "Ensino superior incompleto",
+            "Mestrado completo",
+            "Mestrado incompleto",
+            "Doutorado completo",
+            "Doutorado incompleto"
+          ]
+        },
+        {
+          "type": "text",
+          "name": "profissao",
+          "title": "Qual é a sua profissão?",
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "email",
+          "title": "Endereço de e-mail",
+          "isRequired": true,
+          "inputType": "email",
+          "validators": [
+            {
+              "type": "email"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "fala_nativo_pt",
+          "title": "Você é falante nativo de português brasileiro, ou seja, o português do Brasil é sua primeira língua?",
+          "isRequired": true,
+          "choices": ["Sim", "Não"]
+        }
+      ]
+    },
+    {
+      "name": "page_lingua_nativa",
+      "title": "Língua nativa",
+      "visibleIf": "{consentimento} = 'Afirmo que li e aceito participar do experimento.' and {fala_nativo_pt} = 'Não'",
+      "elements": [
+        {
+          "type": "text",
+          "name": "lingua_nativa",
+          "title": "Qual é sua língua nativa?",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_genero",
+      "title": "Questionário demográfico de gênero",
+      "description": "Nesta seção, serão feitas questões sobre a sua identidade de gênero, ou seja, se você se identifica com o gênero atribuído a você na hora do seu nascimento, você é uma pessoa CIS. Caso você tenha sido atribuído a um gênero no nascimento que não corresponde ao gênero que você se identifica, você é uma pessoa TRANS. Por exemplo, quando João nasceu, o médico disse para a mãe que ele era uma menina. Contudo João foi crescendo e viu que não se identificava como uma pessoa do sexo masculino. Assim, João é um HOMEM TRANS.",
+      "visibleIf": "{consentimento} = 'Afirmo que li e aceito participar do experimento.'",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "identidade_genero",
+          "title": "Qual é sua identidade de gênero?",
+          "isRequired": true,
+          "choices": ["Mulher cis", "Homem cis", "Mulher trans", "Homem trans", "Não-binária"]
+        }
+      ]
+    },
+    {
+      "name": "page_papel_social_genero",
+      "title": "Identidade de gênero: papel social e experiências cotidianas",
+      "visibleIf": "{consentimento} = 'Afirmo que li e aceito participar do experimento.'",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "papel_social",
+          "title": "Como você descreveria seu papel social em relação a sua identidade de gênero?",
+          "isRequired": true,
+          "choices": [
+            "Maternal",
+            "Paternal",
+            "Trabalhador (a)",
+            "Serviços sexuais",
+            "Cuidador (a)",
+            "Provedor(a)",
+            "Prefiro não responder"
+          ],
+          "showOtherItem": true,
+          "otherText": "Outro"
+        },
+        {
+          "type": "rating",
+          "name": "consequencia_negativa_genero",
+          "title": "Você percebe alguma consequência negativa nas suas experiências cotidianas em relação à sua identidade de gênero? (exemplo de consequência negativa: você sente medo de sair na rua de noite por causa do seu gênero)",
+          "isRequired": true,
+          "rateMin": 1,
+          "rateMax": 7,
+          "rateStep": 1,
+          "minRateDescription": "Não há consequências negativas",
+          "maxRateDescription": "Há muitas consequências negativas"
+        },
+        {
+          "type": "rating",
+          "name": "consequencia_positiva_genero",
+          "title": "Você percebe alguma consequência positiva nas suas experiências cotidianas em relação à sua identidade de gênero? (exemplo de consequência positiva: ter a palavra com mais facilidade em uma discussão)",
+          "isRequired": true,
+          "rateMin": 1,
+          "rateMax": 7,
+          "rateStep": 1,
+          "minRateDescription": "Não há consequências positivas",
+          "maxRateDescription": "Há muitas consequências positivas"
+        }
+      ]
+    },
+    {
+      "name": "page_autoestima",
+      "title": "Autoestima",
+      "description": "Nesta seção avaliaremos sua autoestima de acordo com a escala de Rosenberg (Beck, 2000). Sua percepção sobre si mesmo(a) é importante para a compreensão do bem-estar psicológico. Este questionário anônimo tem como objetivo mapear aspectos relacionados à autoestima.\n\nA seguir, você encontrará uma série de afirmações sobre como você pode se sentir em relação a si mesmo(a). Por favor, leia cada uma das questões e indique qual das opções melhor reflete sua opinião geral. Sendo:\n1 = Concordo Totalmente\n2 = Concordo\n3 = Discordo\n4 = Discordo Totalmente",
+      "visibleIf": "{consentimento} = 'Afirmo que li e aceito participar do experimento.'",
+      "elements": [
+        {
+          "type": "rating",
+          "name": "rses_01",
+          "title": "No geral, estou satisfeito(a) comigo mesmo(a).",
+          "isRequired": true,
+          "rateMin": 1,
+          "rateMax": 4,
+          "rateStep": 1,
+          "minRateDescription": "Concordo Totalmente",
+          "maxRateDescription": "Discordo Totalmente"
+        },
+        {
+          "type": "rating",
+          "name": "rses_02",
+          "title": "Às vezes, acho que não presto para nada.",
+          "isRequired": true,
+          "rateMin": 1,
+          "rateMax": 4,
+          "rateStep": 1,
+          "minRateDescription": "Concordo Totalmente",
+          "maxRateDescription": "Discordo Totalmente"
+        },
+        {
+          "type": "rating",
+          "name": "rses_03",
+          "title": "Sinto que tenho várias qualidades boas.",
+          "isRequired": true,
+          "rateMin": 1,
+          "rateMax": 4,
+          "rateStep": 1,
+          "minRateDescription": "Concordo Totalmente",
+          "maxRateDescription": "Discordo Totalmente"
+        },
+        {
+          "type": "rating",
+          "name": "rses_04",
+          "title": "Sou capaz de fazer as coisas tão bem quanto a maioria das pessoas.",
+          "isRequired": true,
+          "rateMin": 1,
+          "rateMax": 4,
+          "rateStep": 1,
+          "minRateDescription": "Concordo Totalmente",
+          "maxRateDescription": "Discordo Totalmente"
+        },
+        {
+          "type": "rating",
+          "name": "rses_05",
+          "title": "Sinto que não tenho muito do que me orgulhar.",
+          "isRequired": true,
+          "rateMin": 1,
+          "rateMax": 4,
+          "rateStep": 1,
+          "minRateDescription": "Concordo Totalmente",
+          "maxRateDescription": "Discordo Totalmente"
+        },
+        {
+          "type": "rating",
+          "name": "rses_06",
+          "title": "Me sinto inútil às vezes.",
+          "isRequired": true,
+          "rateMin": 1,
+          "rateMax": 4,
+          "rateStep": 1,
+          "minRateDescription": "Concordo Totalmente",
+          "maxRateDescription": "Discordo Totalmente"
+        },
+        {
+          "type": "rating",
+          "name": "rses_07",
+          "title": "Sinto que sou uma pessoa digna.",
+          "isRequired": true,
+          "rateMin": 1,
+          "rateMax": 4,
+          "rateStep": 1,
+          "minRateDescription": "Concordo Totalmente",
+          "maxRateDescription": "Discordo Totalmente"
+        },
+        {
+          "type": "rating",
+          "name": "rses_08",
+          "title": "Gostaria de poder ter mais respeito por mim mesmo(a).",
+          "isRequired": true,
+          "rateMin": 1,
+          "rateMax": 4,
+          "rateStep": 1,
+          "minRateDescription": "Concordo Totalmente",
+          "maxRateDescription": "Discordo Totalmente"
+        },
+        {
+          "type": "rating",
+          "name": "rses_09",
+          "title": "No geral, estou inclinado(a) a pensar que sou um(a) fracassado(a).",
+          "isRequired": true,
+          "rateMin": 1,
+          "rateMax": 4,
+          "rateStep": 1,
+          "minRateDescription": "Concordo Totalmente",
+          "maxRateDescription": "Discordo Totalmente"
+        },
+        {
+          "type": "rating",
+          "name": "rses_10",
+          "title": "Tenho uma atitude positiva em relação a mim mesmo(a).",
+          "isRequired": true,
+          "rateMin": 1,
+          "rateMax": 4,
+          "rateStep": 1,
+          "minRateDescription": "Concordo Totalmente",
+          "maxRateDescription": "Discordo Totalmente"
+        }
+      ]
+    },
+    {
+      "name": "page_neurodivergencia_triagem",
+      "title": "TDAH ou neuroatipicidade",
+      "visibleIf": "{consentimento} = 'Afirmo que li e aceito participar do experimento.'",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "neuroatipicidade",
+          "title": "Você apresenta alguma neuroatipicidade, como TEA, TDAH, etc?",
+          "isRequired": true,
+          "choices": ["Sim", "Não"]
+        }
+      ]
+    },
+    {
+      "name": "page_tdah",
+      "title": "TDAH",
+      "visibleIf": "{consentimento} = 'Afirmo que li e aceito participar do experimento.' and {neuroatipicidade} = 'Sim'",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "tem_tdah",
+          "title": "Você tem TDAH?",
+          "isRequired": true,
+          "choices": ["Sim", "Não"]
+        },
+        {
+          "type": "checkbox",
+          "name": "qual_neurodivergencia",
+          "title": "Se não for TDAH, diga qual você tem.",
+          "isRequired": true,
+          "choices": ["TEA", "TDAH", "TAG", "TOC", "TAS", "TAB", "TPB"],
+          "showOtherItem": true,
+          "otherText": "Outro"
+        },
+        {
+          "type": "radiogroup",
+          "name": "diagnostico_profissional",
+          "title": "Você recebeu diagnóstico profissional?",
+          "isRequired": true,
+          "choices": [
+            "Sim, de psicólogo",
+            "Sim, de neuropsicólogo",
+            "Sim, de neurologista",
+            "Sim, de psiquiatra",
+            "Não, me autodiagnostiquei",
+            "Não recebi nenhum diagnóstico"
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "quando_diagnostico",
+          "title": "Quando (se houve diagnóstico profissional) você foi diagnosticado?",
+          "isRequired": true,
+          "choices": [
+            "Na infância",
+            "Na adolescência",
+            "Na maioridade",
+            "Na velhice",
+            "Não tenho diagnóstico."
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "consciencia_direitos",
+          "title": "Você tem consciência dos seus direitos?",
+          "isRequired": true,
+          "choices": ["Sim", "Parcialmente", "Não"]
+        },
+        {
+          "type": "radiogroup",
+          "name": "consciencia_tdah_pre_diagnostico",
+          "title": "Você tinha consciência do que era o TDAH antes de ser diagnosticado?",
+          "isRequired": true,
+          "choices": [
+            "Sim",
+            "Já tinha ouvido falar, mas não entendia bem o que era",
+            "Não"
+          ],
+          "showOtherItem": true,
+          "otherText": "Outro"
+        }
+      ]
+    }
+  ]
+}
