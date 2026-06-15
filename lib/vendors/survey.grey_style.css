@@ -1,0 +1,115 @@
+/**
+ * Light-grey Survey style.
+ */
+
+.survey {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  right: 1em;
+  bottom: 1em;
+
+  overflow-x: hidden;
+
+  /* title, buttons background, border around text boxes */
+  --primary: #1AB7FA;
+  /* text, e.g. Designer, Preview, Logic */
+  --foreground: #000000;
+  /* text of selected element, e.g. Complete button, selected rating*/
+  --primary-foreground: #FFFFFF;
+  /* highlight border of survey elements */
+  --secondary: #FFAA00;
+  /* top menu and side bar background, also background for survey elements */
+  --background: #FAFAFA;
+  /* background behind survey questions */
+  --background-dim: #F0F0F0;
+  /* background of survey element, e.g. text boxes */
+  --background-dim-light: #FFFFFF;
+}
+
+.sd-root-modern {
+  --sd-base-padding: 2em;
+  --sd-base-vertical-padding: 1em;
+}
+
+.sd-element--with-frame:not(.sd-element--collapsed) {
+  border-radius: 5px;
+  background: #FAFAFA; /*#f0f0f0;*/
+  box-shadow: 2px 2px 4px #d8d8d8 /*, -2px -2px 4px #ffffff*/;
+}
+
+/* Survey title */
+.sd-root-modern:not(.svc-tab-designer) .sd-container-modern__title {
+
+  background: #FFFFFF;
+  /*background: linear-gradient(315deg, #F0F0F0, #ffffff);*/
+  /*border-left: 1em solid #F0F0F0;
+  border-right: 1em solid #F0F0F0;*/
+  margin: 0 24px 0 24px;
+  border-radius: 5px;
+  /*border-top-left-radius: 5px;
+  border-top-right-radius: 5px;*/
+  box-shadow: 2px 2px 4px #d8d8d8;
+
+  /*
+    border-radius: 0;
+    background: linear-gradient(315deg, #e5e5e5, #ffffff);
+    box-shadow: -1px -1px 2px #e6e6e6,
+                1px 1px 2px #ffffff;
+    border-bottom: 1px solid #1ab7fa;
+  */
+}
+
+.sd-btn {
+  border-radius: 5px;
+  background: #1ab7fa;
+}
+
+.sd-navigation__next-btn,
+.sd-navigation__prev-btn {
+  color: #000000;
+  background: #FFFFFF !important;
+}
+
+.sd-navigation__start-btn,
+.sd-navigation__preview-btn {
+  color: #FFFFFF;
+}
+
+.sd-question__header {
+  border-bottom: 2px solid #EEEEEE;
+  margin-bottom: 0.5em;
+}
+
+.sv-ranking-item__content {
+  background-color: transparent !important;
+}
+
+.sd-radio__decorator {
+  border: 1px solid #CCCCCC;
+}
+
+
+.sd-question--table>.sd-question__content:before {
+  /*background-color: transparent;*/
+  /*border-left: 2px dashed #DDDDDD !important;
+  border-top: 2px dashed #DDDDDD !important;
+  border-bottom: 2px dashed #DDDDDD !important;*/
+}
+
+/*.sd-table, .sd-matrix__table, .sd-table__cell, .sd-matrix__cell */
+.sd-table, .sd-matrix__table {
+  /*background-color: transparent !important;*/
+  /*border-top: 2px dashed #DDDDDD !important;
+  border-bottom: 2px dashed #DDDDDD !important;*/
+}
+
+.sd-question--table>.sd-question__content:after {
+  /*background-color: transparent;*/
+  /*border-top: 2px dashed #DDDDDD !important;
+  border-bottom: 2px dashed #DDDDDD !important;*/
+}
+
+.sd-element--complex:not(.sd-element--collapsed)>.sd-element__header--location-top:after {
+  background: transparent !important;
+}

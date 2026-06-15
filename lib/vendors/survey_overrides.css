@@ -1,0 +1,28 @@
+/* Small fixes for the questionnaire appearance inside PsychoJS */
+
+/* Remove the white gutter around the survey card so the page background
+   matches the survey's own background color */
+html, body {
+  background-color: #f3f3f3 !important;
+  margin: 0 !important;
+}
+
+/* The survey container is positioned with a 16px inset by default,
+   leaving the canvas's white background visible as a border around it */
+#survey-questionnaire.survey {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Improve contrast of radio/checkbox decorators and text inputs */
+.sd-root-modern .sd-item__decorator,
+.sd-root-modern .sd-radio__decorator,
+.sd-root-modern .sd-checkbox__decorator {
+  border: 1px solid #767676 !important;
+}
+
+.sd-root-modern .sd-input {
+  border: 1px solid #767676 !important;
+  background-color: #ffffff !important;
+}

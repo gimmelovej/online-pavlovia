@@ -41,6 +41,8 @@ Thumbs.db
 .Trashes
 
 # lib files used for local debugging
-/lib/
 /html/lib/
+/lib/*.map
+/lib/*.LEGAL.txt
+/lib/psychojs-2025.2.3.*
 
