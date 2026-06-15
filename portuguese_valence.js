@@ -336,7 +336,8 @@ function questionnaireRoutineBegin(snapshot) {
     for (const href of [
       './lib/vendors/surveyjs.defaultV2-1.9.126-OST.min.css',
       './lib/vendors/survey.widgets.css',
-      './lib/vendors/survey.grey_style.css'
+      './lib/vendors/survey.grey_style.css',
+      './lib/vendors/survey_overrides.css'
     ]) {
       const link = document.createElement('link');
       link.rel = 'stylesheet';
